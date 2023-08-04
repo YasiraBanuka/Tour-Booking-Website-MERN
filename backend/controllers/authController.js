@@ -34,6 +34,7 @@ export const register = async(req, res) => {
 
 // user login
 export const login = async(req, res) => {
+
     const email = req.body.email
 
     try {
@@ -48,16 +49,16 @@ export const login = async(req, res) => {
         }
 
         // if user is exist then check the password / compare the password
-        const checkCorrectPassword = bcrypt.compare(req.body.password, user, password)
+        const checkCorrectPassword = await bcrypt.compare(req.body.password, user.password)
 
-        //  if password is incorrect
+        // if password is incorrect
         if (!checkCorrectPassword) {
             return res.status(401).json({
                 success: false,
                 message: "Incorrect Email or Password"
             })
         }
-        const {password, role, ...rest} = user._doc
+        const {password, role, ... rest} = user._doc
 
         // create jwt token
         const token = jwt.sign(
@@ -76,7 +77,7 @@ export const login = async(req, res) => {
             .json({
                 success: true,
                 message: "Successfully Login",
-                data: { ...rest },
+                data: { ... rest },
             })
         
     } catch (error) {
