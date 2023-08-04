@@ -34,7 +34,7 @@ export const verifyUser = (req, res, next) => {
         else {
             return res.status(401).json({
                 success: false,
-                message: "You're not authenticated!"
+                message: "You're not authorized!"
             })
         }
     })
