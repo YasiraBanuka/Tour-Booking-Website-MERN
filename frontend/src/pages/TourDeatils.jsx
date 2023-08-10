@@ -7,15 +7,17 @@ import calculateAvgRating from '../utils/avgRating'
 import avatar from '../assets/images/avatar.jpg'
 import Booking from '../components/Booking/Booking'
 import Newsletter from '../shared/Newsletter'
+import useFetch from './../hooks/useFetch'
+import {BASE_URL} from './../utils/config'
 
 const TourDeatils = () => {
 
   const {id} = useParams()
-  const reviewMsgRef = useRef('')
+  const reviewMsgRef = useRef("")
   const [tourRating, setTourRating] = useState(null)
 
-  // static data -- later call the API & load data from DB
-  const tour = tourData.find(tour => tour.id === id)
+  // fetch data from DB
+  const {data: tour} = useFetch(`${BASE_URL}/tours/${id}`)
 
   // destructure properties from our object
   const {
