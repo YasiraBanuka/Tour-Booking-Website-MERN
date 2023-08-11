@@ -38,7 +38,8 @@ const Booking = ({tour, avgRating}) => {
         <h3>${price} <span>/per person</span></h3>
         <span className='tour__rating d-flex align-items-center'>
           <i class="ri-star-s-fill"></i> 
-          {avgRating === 0 ? null : avgRating} ({reviews.length})
+          {/* {avgRating === 0 ? null : avgRating} ({reviews.length}) */}
+          {avgRating === 0 ? null : avgRating} ({reviews ? reviews.length : 0})
         </span>
       </div>
 
@@ -59,7 +60,7 @@ const Booking = ({tour, avgRating}) => {
             <input 
               type="number" 
               placeholder='Phone' 
-              id='fullName' 
+              id='phone' 
               required 
               onChange={handleChange} 
             />
