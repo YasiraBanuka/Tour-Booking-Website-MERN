@@ -1,10 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {Container, Row, Col, Form, FormGroup, Button} from 'reactstrap'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 import '../styles/login.css'
 import registerImg from '../assets/images/register.png'
 import userIcon from '../assets/images/user.png'
+import {AuthContext} from './../context/AuthContext'
+import {BASE_URL} from './../utils/config'
 
 const Register = () => {
 
@@ -14,12 +16,33 @@ const Register = () => {
     password: undefined
   })
 
+  const {dispatch} = useContext(AuthContext)
+  const naviagte = useNavigate()
+
   const handleChange = e => {
     setCredentials(prev => ({ ...prev, [e.target.id]:e.target.value}))
   }
 
-  const handleClick = e => {
+  const handleClick = async e => {
     e.preventDefault()
+
+    try {
+      const res = await fetch(`${BASE_URL}/auth/register`, {
+        method: 'post',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+      })
+      const result = await res.json()
+
+      if(!res.ok) alert(result.message)
+
+      dispatch({type: 'REGISTER_SUCCESS'})
+      naviagte('/login')
+    } catch (err) {
+      alert(err.message)
+    }
   }
    
   return (
@@ -66,8 +89,8 @@ const Register = () => {
                       onChange={handleChange} 
                     />
                   </FormGroup>
-                  <Button className='btn secondary__btn auth__btn' type='submit'>Login</Button>
-                  <p>Already have an Account? <Link to='/login'>Create Account</Link></p>
+                  <Button className='btn secondary__btn auth__btn' type='submit'>Register</Button>
+                  <p>Already have an Account? <Link to='/login'>Login Account</Link></p>
                 </Form>
               </div>
             </div>
