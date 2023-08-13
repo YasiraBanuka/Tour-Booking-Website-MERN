@@ -10,7 +10,7 @@ const FeaturedTourList = () => {
     `${BASE_URL}/tours/search/getFeaturedTours`
   )
   
-  console.log(featuredTours)
+  // console.log(featuredTours)
 
   return (
     <>
