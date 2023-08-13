@@ -87,7 +87,7 @@ const Login = () => {
                     />
                   </FormGroup>
                   <Button className='btn secondary__btn auth__btn' type='submit'>Login</Button>
-                  <p>Don't have an Account? <Link to='/register'>Create Accout</Link></p>
+                  <p>Don't have an Account? <br /> <Link to='/register'>Create Accout</Link></p>
                 </Form>
               </div>
             </div>

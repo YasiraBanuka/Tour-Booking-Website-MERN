@@ -90,7 +90,7 @@ const Register = () => {
                     />
                   </FormGroup>
                   <Button className='btn secondary__btn auth__btn' type='submit'>Register</Button>
-                  <p>Already have an Account? <Link to='/login'>Login Account</Link></p>
+                  <p>Already have an Account? <br /> <Link to='/login'>Login Account</Link></p>
                 </Form>
               </div>
             </div>

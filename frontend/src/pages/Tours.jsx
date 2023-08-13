@@ -45,7 +45,7 @@ const Tours = () => {
               <Row>
                 {
                   tours?.map(tour => (
-                    <Col lg='3' className='mb-4' key={tour._id}>
+                    <Col lg='3' md='6' sm='6' className='mb-4' key={tour._id}>
                       <TourCard tour={tour} />
                     </Col>
                   ))
@@ -57,7 +57,7 @@ const Tours = () => {
                       <span 
                         key={number} 
                         onClick={() => setPage(number)}
-                        className={page === number ? "active__page" : ""}
+                        className={ page === number ? "active__page" : "" }
                       >
                         {number + 1}
                       </span>
